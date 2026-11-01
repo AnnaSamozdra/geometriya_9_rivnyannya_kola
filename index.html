@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Геометрія 9 клас — Рівняння кола</title>
+<style>
+:root{--ink:#243247;--muted:#64748b;--blue:#2563eb;--sky:#eaf3ff;--teal:#0f766e;--mint:#e8f7f3;--gold:#f59e0b;--paper:#ffffff;--bg:#f3f6fb;--line:#dbe4f0;--red:#b42318}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI",Arial,sans-serif}
+header{background:linear-gradient(125deg,#173b70,#2673b8 60%,#48a6c8);color:#fff;padding:38px 18px 32px}
+.hero{max-width:1050px;margin:auto}.tag{display:inline-block;background:#ffffff22;border:1px solid #ffffff55;padding:5px 12px;border-radius:20px;font-size:13px;letter-spacing:.3px}
+h1{font-size:clamp(27px,5vw,42px);line-height:1.15;margin:16px 0 10px}.hero p{max-width:760px;margin:0;color:#eaf5ff}
+nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto}
+.navinner{max-width:1050px;margin:auto;display:flex;gap:6px;padding:9px 14px;white-space:nowrap}
+nav a{color:#35516f;text-decoration:none;padding:8px 11px;border-radius:9px;font-size:14px}nav a:hover{background:var(--sky);color:var(--blue)}
+main{max-width:1050px;margin:25px auto;padding:0 16px 50px}
+section{background:var(--paper);border:1px solid var(--line);border-radius:17px;padding:24px;margin:18px 0;box-shadow:0 5px 18px #1c35550a}
+h2{font-size:25px;margin:0 0 15px;color:#173b70}h3{font-size:19px;margin:18px 0 8px;color:#245b91}
+.lead{color:var(--muted);margin-top:-5px}.formula{background:#f0f6ff;border:1px solid #cfe0fa;border-radius:12px;padding:13px 16px;margin:12px 0;text-align:center;font:600 22px Georgia,serif;color:#173b70}
+.formula small{display:block;font:13px "Segoe UI",sans-serif;color:var(--muted);margin-top:5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mini{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:15px}
+.note{border-left:4px solid var(--teal);background:var(--mint);padding:12px 15px;border-radius:8px;margin:12px 0}
+.warn{border-left:4px solid var(--gold);background:#fff8e8;padding:12px 15px;border-radius:8px;margin:12px 0}
+.steps{counter-reset:step;list-style:none;padding:0;margin:10px 0}.steps li{counter-increment:step;position:relative;padding:9px 10px 9px 48px;border-bottom:1px dashed var(--line)}.steps li:before{content:counter(step);position:absolute;left:7px;top:8px;background:#e3efff;color:#1d58a5;border-radius:50%;width:28px;height:28px;text-align:center;line-height:28px;font-weight:700}
+.math{font-family:Georgia,"Times New Roman",serif;font-size:18px}.solution{background:#fbfdff;border:1px solid var(--line);padding:14px 16px;border-radius:12px;margin:12px 0}.solution .answer{color:var(--teal);font-weight:700}
+.graph{display:block;width:100%;max-width:390px;margin:8px auto}
+.level{border-top:1px solid var(--line);padding-top:18px;margin-top:22px}.levelhead{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.pill{background:#eaf3ff;color:#245b91;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700}
+.task{border:1px solid var(--line);border-radius:13px;padding:16px;margin:13px 0;background:#fff}.task p{margin:0 0 10px;font-weight:600}.task label{display:block;font-size:14px;color:var(--muted);margin:8px 0 4px}
+input[type=text]{width:min(100%,360px);padding:10px 12px;border:1px solid #b8c7d9;border-radius:9px;font-size:16px}
+button{border:0;border-radius:9px;padding:10px 15px;font-weight:650;cursor:pointer;background:var(--blue);color:#fff;margin:8px 6px 0 0}button:hover{filter:brightness(.94)}button.secondary{background:#e8eef7;color:#29445f}button.hintbtn{background:#fff3d8;color:#805400}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.choice{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--line);border-radius:10px;padding:11px 12px;cursor:pointer;background:#fbfdff;color:var(--ink)!important}.choice:has(input:checked){border-color:var(--blue);background:var(--sky)}.choice input{margin-top:5px;accent-color:var(--blue)}.feedback{margin-top:10px;padding:11px 13px;border-radius:9px;display:none}.feedback.good{display:block;background:#e8f7f0;color:#116149}.feedback.bad{display:block;background:#fff0ef;color:#9f2922}.hint{display:none;background:#fff8e8;padding:10px 12px;border-radius:8px;margin-top:8px;color:#75520b}
+.progresswrap{background:#e7edf5;border-radius:20px;height:12px;overflow:hidden;margin:10px 0}.progressbar{height:100%;width:0;background:linear-gradient(90deg,#1d70c9,#16a085);transition:width .3s}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
+@media(max-width:700px){.choices{grid-template-columns:1fr}section{padding:18px 15px}.grid2{grid-template-columns:1fr}h2{font-size:22px}.formula{font-size:19px}}
+</style>
+</head>
+<body>
+<header><div class="hero">
+<span class="tag">ГЕОМЕТРІЯ • 9 КЛАС • § 4</span>
+<h1>Рівняння кола</h1>
+<p>Навчальний маршрут: зрозумій формулу, розбери приклади, потренуйся самостійно та перевір, наскільки впевнено ти працюєш із рівняннями кола.</p>
+</div></header>
+<nav><div class="navinner">
+<a href="#start">Початок</a><a href="#theory">Теорія</a><a href="#algorithms">Алгоритми</a><a href="#examples">Приклади</a><a href="#practice">Практика</a><a href="#test">Підсумок</a>
+</div></nav>
+<main>
+<section id="start">
+<h2>🎯 Що навчимося робити?</h2>
+<div class="grid2">
+<div class="mini"><b>Розпізнавати</b><br>рівняння кола та визначати його центр і радіус.</div>
+<div class="mini"><b>Складати</b><br>рівняння кола за центром і радіусом.</div>
+<div class="mini"><b>Перетворювати</b><br>загальне рівняння, виділяючи повні квадрати.</div>
+<div class="mini"><b>Застосовувати</b><br>рівняння кола для перевірки точок і розв'язування задач.</div>
+</div>
+<div class="note"><b>Порада.</b> Не поспішай переходити до вправ. Спочатку розбери алгоритм, а потім спробуй виконати завдання без підказки.</div>
+</section>
+
+<section id="theory">
+<h2>1. Основна теорія</h2>
+<h3>Що таке коло?</h3>
+<p>Коло — це множина всіх точок площини, які знаходяться на однаковій відстані від заданої точки. Ця задана точка — <b>центр кола</b>, а однакова відстань — <b>радіус</b>.</p>
+<svg class="graph" viewBox="0 0 390 235" role="img" aria-label="Коло з центром Q та радіусом r">
+<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#52677e"/></marker></defs>
+<line x1="35" y1="190" x2="355" y2="190" stroke="#52677e" stroke-width="1.6" marker-end="url(#arr)"/><line x1="75" y1="215" x2="75" y2="18" stroke="#52677e" stroke-width="1.6" marker-end="url(#arr)"/>
+<circle cx="205" cy="112" r="72" fill="#dcecff" fill-opacity=".45" stroke="#2673b8" stroke-width="3"/>
+<line x1="205" y1="112" x2="277" y2="112" stroke="#0f766e" stroke-width="3"/><circle cx="205" cy="112" r="4" fill="#173b70"/><circle cx="277" cy="112" r="4" fill="#2673b8"/>
+<text x="188" y="103" font-size="15" fill="#173b70">Q(a; b)</text><text x="240" y="102" font-size="15" fill="#0f766e">r</text><text x="282" y="116" font-size="14" fill="#2673b8">M</text><text x="360" y="195" font-size="14">x</text><text x="64" y="17" font-size="14">y</text><text x="60" y="207" font-size="13">O</text>
+</svg>
+<h3>Рівняння кола з центром Q(a; b) і радіусом r</h3>
+<div class="formula">(x − a)² + (y − b)² = r²</div>
+<p>Тут <b>(a; b)</b> — координати центра, <b>r</b> — радіус, а <b>(x; y)</b> — координати будь-якої точки кола.</p>
+<div class="warn"><b>Зверни увагу на знаки!</b> У рівнянні (x − 3)² + (y + 2)² = 25 центр має координати Q(3; −2), а не Q(−3; 2).</div>
+<h3>Якщо центр — початок координат</h3>
+<div class="formula">x² + y² = r²</div>
+<p>Наприклад, x² + y² = 49 — коло з центром O(0; 0) і радіусом 7.</p>
+</section>
+
+<section id="algorithms">
+<h2>2. Алгоритми розв'язування</h2>
+<h3>Тип 1. Знайти центр і радіус за рівнянням</h3>
+<ol class="steps">
+<li>Порівняй рівняння з формулою (x − a)² + (y − b)² = r².</li>
+<li>Визнач координати центра: Q(a; b). Пам'ятай про протилежні знаки в дужках.</li>
+<li>Знайди радіус: r = √(число праворуч).</li>
+</ol>
+<h3>Тип 2. Скласти рівняння за центром і радіусом</h3>
+<ol class="steps">
+<li>Запиши загальну формулу кола.</li>
+<li>Підстав координати центра замість a і b.</li>
+<li>Піднеси радіус до квадрата та запиши праву частину.</li>
+</ol>
+<h3>Тип 3. Перетворити загальне рівняння</h3>
+<ol class="steps">
+<li>Згрупуй доданки з x та з y.</li>
+<li>Виділи повні квадрати: до x² + px додай (p/2)²; до y² + qy додай (q/2)².</li>
+<li>Перенеси додані числа в праву частину.</li>
+<li>Порівняй із канонічним виглядом і визнач центр та радіус.</li>
+</ol>
+<h3>Тип 4. Скласти рівняння, якщо задано діаметр</h3>
+<ol class="steps">
+<li>Знайди центр кола — середину діаметра.</li>
+<li>Знайди радіус — відстань від центра до одного з кінців діаметра.</li>
+<li>Підстав центр і r² у формулу рівняння кола.</li>
+</ol>
+</section>
+
+<section id="examples">
+<h2>3. Розібрані приклади</h2>
+<p class="lead">Приклади відповідають основним типам завдань параграфа. Читай кожен крок і звертай увагу на знаки.</p>
+<div class="solution">
+<h3>Приклад 1. Знайти центр і радіус кола</h3>
+<p class="math">(x + 2)² + (y − 3)² = 25</p>
+<ol class="steps">
+<li>Запишемо рівняння у вигляді: (x − (−2))² + (y − 3)² = 5².</li>
+<li>Координати центра: Q(−2; 3).</li>
+<li>Радіус: r = √25 = 5.</li>
+</ol><p class="answer">Відповідь: Q(−2; 3), r = 5.</p>
+</div>
+<div class="solution">
+<h3>Приклад 2. Виділити повні квадрати</h3>
+<p class="math">x² + y² − 8x + 6y − 10 = 0</p>
+<ol class="steps">
+<li>Згрупуємо доданки: (x² − 8x) + (y² + 6y) = 10.</li>
+<li>Доповнимо до квадратів: (x² − 8x + 16) + (y² + 6y + 9) = 10 + 16 + 9.</li>
+<li>Запишемо квадрати двочленів: (x − 4)² + (y + 3)² = 35.</li>
+<li>Порівняємо з формулою: центр Q(4; −3), радіус r = √35.</li>
+</ol><p class="answer">Відповідь: Q(4; −3), r = √35.</p>
+</div>
+<div class="solution">
+<h3>Приклад 3. Скласти рівняння кола за кінцями діаметра</h3>
+<p class="math">A(−5; 7), B(3; 11)</p>
+<ol class="steps">
+<li>Знайдемо центр — середину AB: x<sub>Q</sub> = (−5 + 3) : 2 = −1; y<sub>Q</sub> = (7 + 11) : 2 = 9.</li>
+<li>Отже, Q(−1; 9).</li>
+<li>Знайдемо квадрат радіуса: r² = (−1 − (−5))² + (9 − 7)² = 4² + 2² = 20.</li>
+<li>Підставимо у формулу: (x − (−1))² + (y − 9)² = 20.</li>
+</ol><p class="answer">Відповідь: (x + 1)² + (y − 9)² = 20.</p>
+</div>
+<div class="solution">
+<h3>Приклад 4. Чи належить точка колу?</h3>
+<p>Коло задано рівнянням x² + y² = 25. Перевіримо точку A(3; 4).</p>
+<ol class="steps">
+<li>Підставимо координати точки: 3² + 4² = 9 + 16 = 25.</li>
+<li>Отримали правильну рівність.</li>
+<li>Отже, точка A належить колу.</li>
+</ol><p class="answer">Відповідь: так, належить.</p>
+</div>
+<div class="solution">
+<h3>Приклад 5. Точка всередині, на колі чи зовні?</h3>
+<p>Коло: (x − 1)² + (y + 5)² = 16. Центр Q(1; −5), r² = 16.</p>
+<p>Для точки A(4; −2): (4 − 1)² + (−2 + 5)² = 9 + 9 = 18.</p>
+<p>Оскільки 18 > 16, точка лежить <b>поза кругом</b>.</p>
+<div class="note">Порівнюй отримане число з r²: менше — всередині круга; дорівнює — на колі; більше — поза кругом.</div>
+</div>
+<div class="solution">
+<h3>Приклад 6. Знайти відстань між центрами двох кіл</h3>
+<p>Кола задані рівняннями x² + (y − 2)² = 4 та (x + 1)² + (y − 4)² = 24.</p>
+<ol class="steps">
+<li>Центри: Q₁(0; 2), Q₂(−1; 4).</li>
+<li>Відстань: Q₁Q₂ = √((−1 − 0)² + (4 − 2)²).</li>
+<li>Q₁Q₂ = √(1 + 4) = √5.</li>
+</ol><p class="answer">Відповідь: √5.</p>
+</div>
+</section>
+
+<section id="practice">
+<h2>4. Тренувальні вправи</h2>
+<p class="lead">Виконуй завдання послідовно. Відповіді вводь у поле. Для координат використовуй формат, зазначений у завданні. Після перевірки прочитай пояснення.</p>
+<div class="mini">
+<b>Твій прогрес</b><div class="progresswrap"><div class="progressbar" id="progress"></div></div>
+<span id="progressText">Правильних відповідей: 0 із 20</span>
+</div>
+<div id="tasks"></div>
+</section>
+
+<section id="test">
+<h2>5. Підсумкова самоперевірка</h2>
+<p>Після виконання всіх вправ дай собі відповіді:</p>
+<ul>
+<li>Чи можу я визначити центр і радіус кола за канонічним рівнянням?</li>
+<li>Чи вмію виділяти повні квадрати?</li>
+<li>Чи можу скласти рівняння кола за центром і радіусом або за кінцями діаметра?</li>
+<li>Чи вмію перевірити, чи належить точка колу?</li>
+</ul>
+<div class="note"><b>Моя мета:</b> якщо десь помилився/помилилася, повернися до відповідного алгоритму та повтори приклад.</div>
+<button class="secondary" onclick="resetProgress()">Скинути результати й почати знову</button>
+</section>
+</main>
+<footer>Навчальний матеріал з геометрії • 9 клас • Рівняння кола</footer>
+<script>
+const levels=[
+{title:"Рівень 1. Розпізнаємо рівняння",desc:"Базові формули та визначення центра й радіуса.",items:[
+{q:"Коло має центр Q(2; −3) і радіус 4. Яке його рівняння?",options:["(x − 2)² + (y + 3)² = 16","(x + 2)² + (y − 3)² = 16","(x − 2)² + (y − 3)² = 4","(x + 2)² + (y + 3)² = 16"],correct:0,h:"У дужках стоять вирази x − a та y − b; праворуч — квадрат радіуса.",e:"Підставляємо a = 2, b = −3, r² = 16: (x − 2)² + (y + 3)² = 16."},
+{q:"Знайди абсцису центра кола (x + 5)² + (y − 1)² = 9.",a:["-5"],h:"Знак біля x у дужках протилежний координаті центра.",e:"x + 5 = x − (−5), тому абсциса центра дорівнює −5."},
+{q:"Знайди ординату центра кола (x − 4)² + (y + 2)² = 36.",a:["-2"],h:"Порівняй другу дужку з y − b.",e:"y + 2 = y − (−2), тому b = −2."},
+{q:"Знайди радіус кола x² + y² = 64.",a:["8"],h:"Праворуч записано квадрат радіуса.",e:"r² = 64, отже r = √64 = 8."},
+{q:"Чи є рівняння (x − 1)² + (y + 4)² = 0 рівнянням кола ненульового радіуса? Введи так або ні.",a:["ні","нет"],h:"Подумай, чи може радіус дорівнювати нулю для звичайного кола.",e:"r² = 0, тому r = 0. Це вироджений випадок — одна точка, а не коло ненульового радіуса."}
+]},
+{title:"Рівень 2. Застосовуємо формулу",desc:"Складаємо рівняння та перевіряємо належність точки.",items:[
+{q:"Склади рівняння кола з центром Q(−3; 2) і радіусом 5.",options:["(x − 3)² + (y + 2)² = 25","(x + 3)² + (y − 2)² = 25","(x + 3)² + (y − 2)² = 10","(x − 3)² + (y − 2)² = 25"],correct:1,h:"Підстав координати центра та квадрат радіуса.",e:"(x − (−3))² + (y − 2)² = 5², отже (x + 3)² + (y − 2)² = 25."},
+{q:"Чи належить точка A(−3; 4) колу x² + y² = 25? Введи так або ні.",a:["так","да"],h:"Підстав обидві координати в ліву частину рівняння.",e:"(−3)² + 4² = 9 + 16 = 25. Рівність виконується, точка належить колу."},
+{q:"Коло має центр Q(1; −2) і проходить через A(4; 2). Знайди r².",a:["25"],h:"Знайди квадрат відстані QA, не добуваючи корінь.",e:"r² = (4 − 1)² + (2 − (−2))² = 3² + 4² = 25."},
+{q:"Коло (x − 2)² + (y + 1)² = 25. Де розташована точка P(2; 3)?",options:["На колі","Усередині круга","Поза кругом","Визначити неможливо"],correct:1,h:"Обчисли (x − 2)² + (y + 1)² для точки та порівняй із 25.",e:"(2 − 2)² + (3 + 1)² = 0 + 16 = 16. Оскільки 16 < 25, точка лежить усередині круга."},
+{q:"Центр кола Q(0; 0), радіус 3. Яке рівняння?",options:["x² + y² = 3","x² + y² = 6","x² + y² = 9","(x − 3)² + (y − 3)² = 9"],correct:2,h:"Для центра в початку координат використовуй спрощений вигляд.",e:"x² + y² = r² = 9."}
+]},
+{title:"Рівень 3. Перетворюємо рівняння",desc:"Виділення повних квадратів і знаходження центра та радіуса.",items:[
+{q:"Знайди абсцису центра кола x² + y² − 6x + 4y − 12 = 0.",a:["3"],h:"У виразі x² − 6x половина коефіцієнта при x дорівнює −3.",e:"x² − 6x + 9 = (x − 3)², тому абсциса центра — 3."},
+{q:"Знайди ординату центра кола x² + y² + 8x − 10y + 8 = 0.",a:["5"],h:"Порівняй y² − 10y з (y − b)².",e:"y² − 10y + 25 = (y − 5)², отже ордината центра — 5."},
+{q:"Знайди радіус кола (x − 3)² + (y + 4)² = 49.",a:["7"],h:"Радіус — невід'ємний квадратний корінь із числа праворуч.",e:"r = √49 = 7."},
+{q:"Знайди радіус кола x² + y² − 4x + 6y − 12 = 0.",a:["5"],h:"Доповни x² − 4x до квадрата, а y² + 6y — до квадрата.",e:"(x − 2)² + (y + 3)² = 25, тому r = 5."},
+{q:"Після виділення повних квадратів отримали (x + 2)² + (y − 1)² = 13. Запиши координати центра у форматі (x;y).",a:["(-2;1)","(-2,1)"],h:"Пам'ятай: знаки в координатах центра протилежні знакам у дужках.",e:"x + 2 = x − (−2), y − 1, тому центр Q(−2; 1)."}
+]},
+{title:"Рівень 4. Мислимо та розв'язуємо складніші задачі",desc:"Діаметр, геометричні умови та задачі в кілька кроків.",items:[
+{q:"Кінці діаметра A(−2; 1) і B(4; 5). Знайди абсцису центра кола.",a:["1"],h:"Центр — середина діаметра. Знайди середнє арифметичне абсцис кінців.",e:"xQ = (−2 + 4) : 2 = 1."},
+{q:"Кінці діаметра A(−1; 2) і B(5; 10). Знайди r².",a:["25"],h:"Спочатку знайди центр, потім квадрат відстані від центра до A.",e:"Центр Q(2; 6). r² = (2 + 1)² + (6 − 2)² = 9 + 16 = 25."},
+{q:"Коло радіуса 10 проходить через A(5; −8), а його центр лежить на осі Ox. Які можливі абсциси центра? Введи два числа через кому.",a:["-1,11","11,-1","-1;11","11;-1"],h:"Познач центр як Q(t; 0). Використай формулу відстані QA = 10.",e:"(5 − t)² + 64 = 100, тому (5 − t)² = 36. Звідси t = −1 або t = 11."},
+{q:"Знайди відстань між центрами кіл x² + (y − 2)² = 4 і (x + 1)² + (y − 4)² = 24. Відповідь запиши через корінь, наприклад sqrt(5).",a:["sqrt(5)","√5","√(5)"],h:"Спочатку прочитай координати обох центрів, а потім застосуй формулу відстані.",e:"Центри Q₁(0; 2) і Q₂(−1; 4). Відстань = √(1 + 4) = √5. Корінь обчислено до кінця: √5 — точне значення, десяткове наближення ≈ 2,24."},
+{q:"Центр кола лежить на бісектрисі другого координатного кута, радіус дорівнює 5. Яка умова виконується для координат центра (a; b)?",a:["b=-a","a+b=0","y=-x"],h:"Бісектриса другого координатного кута має протилежні координати x та y.",e:"Для точок бісектриси другого координатного кута y = −x, тобто b = −a."}
+]}
+];
+let done=new Set();
+const root=document.getElementById("tasks");
+let globalIndex=0;
+levels.forEach((lev,li)=>{
+ const block=document.createElement("div");block.className="level";
+ block.innerHTML=`<div class="levelhead"><h3>${lev.title}</h3><span class="pill">${lev.items.length} завдань</span></div><p class="lead">${lev.desc}</p>`;
+ lev.items.forEach((it,ii)=>{
+  globalIndex++;
+  const id="task"+globalIndex;
+  const card=document.createElement("div");card.className="task";
+  let answerUI = it.options
+   ? `<div class="choices">${it.options.map((op,oi)=>`<label class="choice"><input type="radio" name="${id}" value="${oi}"> <span>${String.fromCharCode(65+oi)}) ${op}</span></label>`).join("")}</div>`
+   : `<label for="${id}">Твоя відповідь</label><input type="text" id="${id}" autocomplete="off" placeholder="Введи відповідь">`;
+  card.innerHTML=`<p>${globalIndex}. ${it.q}</p>${answerUI}<br><button onclick="checkTask(${globalIndex-1})">Перевірити</button><button class="hintbtn" onclick="showHint(${globalIndex-1})">Підказка</button><div class="hint" id="hint${globalIndex}">${it.h}</div><div class="feedback" id="feed${globalIndex}"></div>`;
+  block.appendChild(card);
+ });
+ root.appendChild(block);
+});
+const all=levels.flatMap(x=>x.items);
+function norm(s){return s.toLowerCase().replace(/\s/g,"").replace(/²/g,"^2").replace(/−/g,"-").replace(/×/g,"*").replace(/,/g,";").replace(/sqrt/g,"√").replace(/\*\*/g,"^");}
+function checkTask(i){
+ const n=i+1, fb=document.getElementById("feed"+n), item=all[i];
+ let ok=false;
+ if(item.options){
+  const selected=document.querySelector(`input[name="task${n}"]:checked`);
+  ok=!!selected && Number(selected.value)===item.correct;
+ }else{
+  const input=document.getElementById("task"+n);
+  const val=norm(input.value);ok=item.a.some(a=>norm(a)===val);
+ }
+ fb.className="feedback "+(ok?"good":"bad");fb.style.display="block";
+ if(ok){fb.textContent="Правильно! "+item.e;done.add(n);}
+ else{fb.textContent="Поки що ні. "+item.e+" Спробуй ще раз, скориставшись алгоритмом або підказкою.";done.delete(n);}
+ updateProgress();
+}
+function showHint(i){document.getElementById("hint"+(i+1)).style.display="block";}
+function updateProgress(){const count=done.size;document.getElementById("progress").style.width=(count/20*100)+"%";document.getElementById("progressText").textContent=`Правильних відповідей: ${count} із 20`;}
+function resetProgress(){done.clear();document.querySelectorAll('input[type="text"]').forEach(x=>x.value="");document.querySelectorAll('input[type="radio"]').forEach(x=>x.checked=false);document.querySelectorAll(".feedback,.hint").forEach(x=>{x.style.display="none";x.textContent=x.classList.contains("hint")?x.textContent:"";});updateProgress();window.scrollTo({top:document.getElementById("practice").offsetTop-70,behavior:"smooth"});}
+</script>
+</body>
+</html>
